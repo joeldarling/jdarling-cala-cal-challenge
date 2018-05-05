@@ -41,7 +41,7 @@ class SuperDate {
   // returns true / false if given day is Saturday or Sunday
   isWeekend(day) {
     const dayNumber = this.getDay(day);
-    return dayNumber === 5 || dayNumber === 6;
+    return dayNumber === 0 || dayNumber === 6;
   }
   
   // returns an array of days in month
