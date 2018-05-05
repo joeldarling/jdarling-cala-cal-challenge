@@ -3,11 +3,10 @@
 (function calendar() {
 
   // wait for DOM to load, then render cal
-  document.addEventListener("DOMContentLoaded", event => {
-    let currentMonth = new DateHelper();
+  document.addEventListener("DOMContentLoaded", () => {
+    let currentMonth = new SuperDate();
 
     // create / save DOM elements for later
-    const calendarWrapper = document.getElementById('calendar-wrapper');
     const monthTitleEl = document.getElementById('month-title');
     const daysContainerEl = document.getElementById('days');
     const backButton = document.getElementById('backButton');
@@ -33,16 +32,19 @@
       renderDays(currentMonth, daysContainerEl);
     }
 
+    // renders a single calendar day
     function renderDay(day, isWeekend = false) {
       return `<span class="calendar-square ${isWeekend ? 'weekend' : ''}">${day}</span>`;
     }
 
+    // renders current month / year within target element
     function renderMonthTitle(currentMonth, targetEl) {
       const monthTitle = `${currentMonth.getMonthName()} ${currentMonth.getYearName()}`;
 
       targetEl.innerText = monthTitle;
     }
 
+    // renders all days in current month within target element
     function renderDays(currentMonth, targetEL) {
       const spacerAmount = currentMonth.getFirstDayInMonth();
       const spacerEl = new Array(spacerAmount).fill('').map(renderDay).join('');
@@ -53,6 +55,5 @@
 
     // initial render
     renderCalendar();
-  
   });
-})()
+})();

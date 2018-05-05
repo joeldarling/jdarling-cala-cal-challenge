@@ -1,6 +1,6 @@
 /* HTML styles */
 body {
-  font-family: 'Helvetica';
+  font-family: 'Arial';
   font-size: 1.5em;
 }
 
@@ -44,8 +44,13 @@ hr {
   grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar-square {
+.calendar-square-header {
   font-weight: 800;
+  text-align: center;
+  margin: 10px;
+}
+
+.calendar-square {
   text-align: center;
   margin: 10px;
 }

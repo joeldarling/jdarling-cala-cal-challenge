@@ -9,18 +9,18 @@
 
 <body>
   <div id="calendar-wrapper">
-      <h1 id="month-title"></h1>
+      <h3 id="month-title"></h3>
       <div class="row">
         <button class="button" id="backButton"><<</button>
         <div id="calendar">
           <div class="grid-row">
-            <span class="calendar-square weekend">S</span>
-            <span class="calendar-square">M</span>
-            <span class="calendar-square">T</span>
-            <span class="calendar-square">W</span>
-            <span class="calendar-square">T</span>
-            <span class="calendar-square">F</span>
-            <span class="calendar-square weekend">S</span>
+            <span class="calendar-square-header weekend">S</span>
+            <span class="calendar-square-header">M</span>
+            <span class="calendar-square-header">T</span>
+            <span class="calendar-square-header">W</span>
+            <span class="calendar-square-header">T</span>
+            <span class="calendar-square-header">F</span>
+            <span class="calendar-square-header weekend">S</span>
           </div>
           <hr/>
           <div id="days" class="grid-row"></div>
@@ -29,7 +29,7 @@
       </div>
   </div>
   
-  <script src="js/DateHelper.js"></script>
+  <script src="js/SuperDate.js"></script>
   <script src="js/calendar.js"></script>
 </body>
 </html>
