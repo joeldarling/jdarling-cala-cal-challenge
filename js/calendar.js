@@ -9,14 +9,14 @@
     }
 
     getDay(day = 0) {
-      return new Date(this.getYear(), this.startDate.getMonth(), day).getDay();
+      return new Date(this.startDate.getFullYear(), this.startDate.getMonth(), day).getDay();
     }
 
-    getMonth() {
+    getMonthName() {
       return this.monthNames[this.startDate.getMonth()]
     }
 
-    getYear() {
+    getYearName() {
       return this.startDate.getFullYear();
     }
 
@@ -29,7 +29,7 @@
     }
 
     changeMonthByDelta(delta) {
-      this.startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + delta, 0);
+      this.startDate = new Date(this.startDate.getFullYear(), (this.startDate.getMonth() + 1) + delta, 0);
     }
 
     isWeekend(day) {
@@ -40,38 +40,62 @@
     toArray() {
       const array = [];
       for(let i = 0; i < this.getDaysInMonth(); i++) {
-        array.push(i);
+        array.push(i + 1);
       }
       return array;
     }
   }
 
-  function renderDay(day, isWeekend = false) {
-    return `<span class="calendar-square ${isWeekend ? 'weekend' : ''}">${day}</span>`;
-  }
-
   // wait for DOM to load, then render cal
   document.addEventListener("DOMContentLoaded", event => {
     let currentMonth = new DateHelper();
-    currentMonth.changeMonthByDelta(2)
 
     // save DOM elements for later
     const monthTitleEl = document.getElementById('month-title');
     const daysContainerEl = document.getElementById('days');
+    const backButton = document.getElementById('backButton');
+    const nextButton = document.getElementById('nextButton');
 
-    function renderCalendar() {
-      // render month title
-      const monthTitle = `${currentMonth.getMonth()} ${currentMonth.getYear()}`
-      monthTitleEl.innerText = monthTitle;
-
-      // render days
-      const spacerAmount = currentMonth.getFirstDayInMonth();
-      const spacerEl = new Array(spacerAmount).fill('').map(renderDay).join('');
-      const days = currentMonth.toArray().map(day => renderDay(day + 1, currentMonth.isWeekend(day))).join('')
-      daysContainerEl.innerHTML = spacerEl + days;
+    // add event handlers
+    backButton.onclick = () => {
+      currentMonth.changeMonthByDelta(-1);
+      renderCalendar();
     }
 
+    nextButton.onclick = () => {
+      currentMonth.changeMonthByDelta(1);
+      renderCalendar();
+    }
+
+    // this gets called on DOM load, and also when we change month
+    function renderCalendar() {
+      // render month title
+      renderMonthTitle(currentMonth, monthTitleEl);
+
+      // render days
+      renderDays(currentMonth, daysContainerEl);
+    }
+
+    function renderDay(day, isWeekend = false) {
+      return `<span class="calendar-square ${isWeekend ? 'weekend' : ''}">${day}</span>`;
+    }
+
+    function renderMonthTitle(currentMonth, targetEl) {
+      const monthTitle = `${currentMonth.getMonthName()} ${currentMonth.getYearName()}`;
+
+      targetEl.innerText = monthTitle;
+    }
+
+    function renderDays(currentMonth, targetEL) {
+      const spacerAmount = currentMonth.getFirstDayInMonth();
+      const spacerEl = new Array(spacerAmount).fill('').map(renderDay).join('');
+      const days = currentMonth.toArray().map(day => renderDay(day, currentMonth.isWeekend(day))).join('');
+
+      targetEL.innerHTML = spacerEl + days;
+    }
+
+    // initial render
     renderCalendar();
-    
+  
   });
 })()

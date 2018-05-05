@@ -10,20 +10,22 @@
 <body>
   <div id="main">
       <h1 id="month-title"></h1>
-      <div id="calendar">
-        
-        <div class="row">
-          <span class="calendar-square weekend">S</span>
-          <span class="calendar-square">M</span>
-          <span class="calendar-square">T</span>
-          <span class="calendar-square">W</span>
-          <span class="calendar-square">T</span>
-          <span class="calendar-square">F</span>
-          <span class="calendar-square weekend">S</span>
+      <div class="row">
+        <button class="button" id="backButton"><<</button>
+        <div id="calendar">
+          <div class="grid-row">
+            <span class="calendar-square weekend">S</span>
+            <span class="calendar-square">M</span>
+            <span class="calendar-square">T</span>
+            <span class="calendar-square">W</span>
+            <span class="calendar-square">T</span>
+            <span class="calendar-square">F</span>
+            <span class="calendar-square weekend">S</span>
+          </div>
+          <hr/>
+          <div id="days" class="grid-row"></div>
         </div>
-        <hr/>
-        <div id="days" class="row">
-        </div>
+        <button class="button" id="nextButton">>></button>
       </div>
   </div>
   
