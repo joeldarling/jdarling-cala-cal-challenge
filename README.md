@@ -1,6 +1,6 @@
-# jdarling-cala-cal-challenge
+# jdarling-js-calendar
 
-Hiya, this is my code submission for the CALA code challenge. 
+Simple calendar.
 
 To use: 
 
